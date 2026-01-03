@@ -7,7 +7,7 @@
     <style>
         /* --- ESTILOS CSS --- */
         :root {
-            --primary-color: #2563eb; /* Azul estándar */
+            --primary-color: #4071f8; /* Azul estándar */
             --text-color: #334155;    /* Gris oscuro para lectura fácil */
             --bg-color: #f8fafc;      /* Fondo gris muy claro */
             --container-bg: #ffffff;  /* Fondo blanco para el papel */
@@ -60,16 +60,6 @@
             padding-left: 20px;
         }
 
-        .highlight {
-            background-color: #fef3c7; /* Amarillo suave para los huecos a rellenar */
-            padding: 2px 5px;
-            border-radius: 4px;
-            color: #d97706;
-            font-weight: bold;
-            border: 1px dashed #d97706;
-        }
-
-        /* Clase para cuando ya lo hayas rellenado (borra el estilo de alerta) */
         .filled {
             background-color: transparent;
             color: inherit;
@@ -107,7 +97,7 @@
         }
         
         .print-btn:hover {
-            background-color: #1d4ed8;
+            opacity: 0.9;
         }
 
         @media (max-width: 600px) {
@@ -130,7 +120,7 @@
 <body>
 
     <div class="container">
-        <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+        <button class="print-btn" onclick="window.print()">Imprimir / Guardar como PDF</button>
 
         <h1>Política de Privacidad</h1>
         
@@ -139,11 +129,9 @@
         </div>
 
         <p>
-            La presente Política de Privacidad describe cómo 
-            <span class="highlight">[NOMBRE DE TU EQUIPO O DESARROLLADOR]</span> 
-            ("nosotros", "nuestro") recopila, utiliza y comparte la información del usuario ("usted") 
-            en relación con el uso de nuestra aplicación móvil 
-            <span class="highlight">[NOMBRE DE LA APP]</span> (la "Aplicación").
+            La presente Política de Privacidad describe cómo los desarrolladores de la aplicación móvil
+            recopilan, utilizan y comparten la información del usuario ("usted") 
+            en relación con el uso de nuestra aplicación móvil Granada Metro Visualizer (la "Aplicación").
         </p>
         
         <p>Nos comprometemos a proteger su privacidad. Esta aplicación ha sido diseñada respetando los principios de minimización de datos: solo accedemos a la información estrictamente necesaria para que la aplicación funcione.</p>
@@ -151,9 +139,9 @@
         <h2>1. Responsable del Tratamiento</h2>
         <p>A efectos de la legislación de protección de datos (RGPD) y otras normativas aplicables, el responsable del tratamiento de los datos es:</p>
         <ul>
-            <li><strong>Titular:</strong> <span class="highlight">[TU NOMBRE COMPLETO O NOMBRE DEL EQUIPO]</span></li>
-            <li><strong>Contacto:</strong> <span class="highlight">[TU CORREO ELECTRÓNICO]</span></li>
-            <li><strong>Ubicación:</strong> España</li>
+            <li><strong>Titulares:</strong> El equipo de Granada Metro Visualizer: José de los Ríos Piñero, Pablo Delgado Galera, Adolfo Martínez Olmedo y Marcos Baena Solar</li>
+            <li><strong>Contacto:</strong> granadametroapp@gmail.com</li>
+            <li><strong>Ubicación:</strong> Granada, España</li>
         </ul>
 
         <h2>2. Información que recopilamos y permisos</h2>
@@ -195,13 +183,13 @@
         <p>Usted tiene derecho a solicitar información sobre el tratamiento de sus datos, así como a revocar los permisos concedidos (como la ubicación) en cualquier momento desde los ajustes de su móvil. Si considera que sus derechos han sido vulnerados, puede presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD).</p>
 
         <h2>7. Contacto</h2>
-        <p>Si tiene alguna pregunta sobre esta Política de Privacidad, puede contactarnos en:</p>
+        <p>Si tiene alguna pregunta sobre esta Política de Privacidad, puede contactarnos rellenando el formulario en:</p>
         <p style="text-align: center; font-weight: bold; font-size: 1.1rem;">
-            <a href="mailto:[PON_TU_EMAIL_AQUI]" style="color: var(--primary-color);">[TU EMAIL AQUÍ]</a>
+            <a href="./form.html" style="color: var(--primary-color);">Formulario de Contacto</a>
         </p>
 
         <div class="footer">
-            &copy; <span id="year"></span> <span class="highlight">[NOMBRE DE TU APP]</span>. Todos los derechos reservados.
+            &copy; <span id="year"></span> Granada Metro Visualizer. Todos los derechos reservados.
         </div>
     </div>
 
@@ -216,9 +204,6 @@
         // 2. Poner el año actual en el Copyright del footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // CONSEJO: 
-        // Cuando rellenes los datos en el HTML, busca la clase "highlight" 
-        // en el CSS y bórrala o cámbiala para que deje de salir el fondo amarillo.
     </script>
 </body>
 </html>
