@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad - App de Metro</title>
+    <style>
+        /* --- ESTILOS CSS --- */
+        :root {
+            --primary-color: #2563eb; /* Azul estándar */
+            --text-color: #334155;    /* Gris oscuro para lectura fácil */
+            --bg-color: #f8fafc;      /* Fondo gris muy claro */
+            --container-bg: #ffffff;  /* Fondo blanco para el papel */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--container-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #1e293b;
+            margin-top: 30px;
+            font-size: 1.25rem;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        p, li {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .highlight {
+            background-color: #fef3c7; /* Amarillo suave para los huecos a rellenar */
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #d97706;
+            font-weight: bold;
+            border: 1px dashed #d97706;
+        }
+
+        /* Clase para cuando ya lo hayas rellenado (borra el estilo de alerta) */
+        .filled {
+            background-color: transparent;
+            color: inherit;
+            border: none;
+            font-weight: normal;
+        }
+
+        .meta-info {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .footer {
+            margin-top: 50px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Botón de imprimir */
+        .print-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            transition: background 0.2s;
+        }
+        
+        .print-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* Ocultar botón al imprimir */
+        @media print {
+            .print-btn { display: none; }
+            body { background-color: white; }
+            .container { box-shadow: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
+
+        <h1>Política de Privacidad</h1>
+        
+        <div class="meta-info">
+            Última actualización: <span id="current-date">Cargando fecha...</span>
+        </div>
+
+        <p>
+            La presente Política de Privacidad describe cómo 
+            <span class="highlight">[NOMBRE DE TU EQUIPO O DESARROLLADOR]</span> 
+            ("nosotros", "nuestro") recopila, utiliza y comparte la información del usuario ("usted") 
+            en relación con el uso de nuestra aplicación móvil 
+            <span class="highlight">[NOMBRE DE LA APP]</span> (la "Aplicación").
+        </p>
+        
+        <p>Nos comprometemos a proteger su privacidad. Esta aplicación ha sido diseñada respetando los principios de minimización de datos: solo accedemos a la información estrictamente necesaria para que la aplicación funcione.</p>
+
+        <h2>1. Responsable del Tratamiento</h2>
+        <p>A efectos de la legislación de protección de datos (RGPD) y otras normativas aplicables, el responsable del tratamiento de los datos es:</p>
+        <ul>
+            <li><strong>Titular:</strong> <span class="highlight">[TU NOMBRE COMPLETO O NOMBRE DEL EQUIPO]</span></li>
+            <li><strong>Contacto:</strong> <span class="highlight">[TU CORREO ELECTRÓNICO]</span></li>
+            <li><strong>Ubicación:</strong> España</li>
+        </ul>
+
+        <h2>2. Información que recopilamos y permisos</h2>
+        <p>Para el correcto funcionamiento de la Aplicación, solicitamos los siguientes permisos y acceso a datos del dispositivo:</p>
+
+        <h3>A. Ubicación (Geolocalización)</h3>
+        <p>La Aplicación solicita acceso a su ubicación precisa o aproximada (GPS y red).</p>
+        <ul>
+            <li><strong>Finalidad:</strong> Utilizamos esta información exclusivamente para mostrarle su posición en el mapa en tiempo real, calcular distancias a las paradas de metro más cercanas y trazar rutas.</li>
+            <li><strong>Tratamiento:</strong> La ubicación se procesa localmente en su dispositivo. <strong>No almacenamos su historial de ubicaciones</strong> en servidores externos ni lo compartimos con terceros.</li>
+        </ul>
+
+        <h3>B. Notificaciones Push</h3>
+        <p>La Aplicación puede solicitar permiso para enviarle notificaciones.</p>
+        <ul>
+            <li><strong>Finalidad:</strong> Informarle sobre incidencias en el servicio, actualizaciones de la app o avisos importantes.</li>
+            <li><strong>Gestión:</strong> Puede desactivar estas notificaciones en cualquier momento desde los ajustes de su dispositivo.</li>
+        </ul>
+
+        <h3>C. Datos Técnicos (Logs)</h3>
+        <p>De forma automática, la plataforma de distribución (Google Play Store o Apple App Store) puede recopilar estadísticas anónimas sobre fallos (crashes), modelo de dispositivo y versión del sistema operativo. Estos datos no le identifican personalmente y se usan solo para mejorar la estabilidad técnica de la app.</p>
+
+        <h2>3. Uso de la Información</h2>
+        <p>No recopilamos nombres, correos electrónicos ni números de teléfono. La información técnica y de sensores se utiliza únicamente para:</p>
+        <ol>
+            <li>Proporcionar la funcionalidad principal (ver horarios y mapas).</li>
+            <li>Mejorar el rendimiento técnico de la Aplicación.</li>
+            <li>Cumplir con obligaciones legales.</li>
+        </ol>
+
+        <h2>4. Compartir información con terceros</h2>
+        <p>Actualmente, <strong>la Aplicación no contiene publicidad</strong> y no vendemos ni cedemos sus datos a terceros con fines comerciales.</p>
+        <p>La Aplicación utiliza servicios de terceros estrictamente necesarios para la infraestructura técnica (por ejemplo, los mapas del sistema provistos por Google Maps SDK o Apple MapKit). Estos proveedores operan bajo sus propias políticas de privacidad.</p>
+
+        <h2>5. Retención de Datos</h2>
+        <p>Dado que no requerimos registro de usuario ni almacenamos datos personales en servidores propios, no retenemos su información personal. Los datos de ubicación son efímeros y desaparecen al cerrar la aplicación.</p>
+
+        <h2>6. Sus Derechos</h2>
+        <p>Usted tiene derecho a solicitar información sobre el tratamiento de sus datos, así como a revocar los permisos concedidos (como la ubicación) en cualquier momento desde los ajustes de su móvil. Si considera que sus derechos han sido vulnerados, puede presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD).</p>
+
+        <h2>7. Contacto</h2>
+        <p>Si tiene alguna pregunta sobre esta Política de Privacidad, puede contactarnos en:</p>
+        <p style="text-align: center; font-weight: bold; font-size: 1.1rem;">
+            <a href="mailto:[PON_TU_EMAIL_AQUI]" style="color: var(--primary-color);">[TU EMAIL AQUÍ]</a>
+        </p>
+
+        <div class="footer">
+            &copy; <span id="year"></span> <span class="highlight">[NOMBRE DE TU APP]</span>. Todos los derechos reservados.
+        </div>
+    </div>
+
+    <script>
+        /* --- JAVASCRIPT BÁSICO --- */
+        
+        // 1. Poner la fecha de hoy automáticamente en "Última actualización"
+        const dateElement = document.getElementById('current-date');
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        dateElement.textContent = new Date().toLocaleDateString('es-ES', options);
+
+        // 2. Poner el año actual en el Copyright del footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // CONSEJO: 
+        // Cuando rellenes los datos en el HTML, busca la clase "highlight" 
+        // en el CSS y bórrala o cámbiala para que deje de salir el fondo amarillo.
+    </script>
+</body>
+</html>
