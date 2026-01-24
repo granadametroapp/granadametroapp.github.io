@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro App - La mejor forma de moverte</title>
+    <meta name="description" content="Consulta los horarios en tiempo real, mapas y paradas del Metro. Rápida, sencilla y gratuita.">
+    <style>
+        /* --- CSS --- */
+        :root {
+            --primary: #2563eb; /* Azul Vibrante */
+            --dark: #0f172a;    /* Azul Oscuro casi negro */
+            --light: #f8fafc;   /* Blanco grisáceo */
+            --text: #334155;    /* Gris texto */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Cabecera */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section (Lo primero que se ve) */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #475569;
+        }
+
+        /* Mockup del móvil */
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            width: 280px;
+            height: 550px;
+            background-color: var(--dark);
+            border-radius: 40px;
+            border: 10px solid #1e293b;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* Botones de Descarga (CSS Puro) */
+        .store-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-store {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--dark);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-store:hover {
+            transform: translateY(-2px);
+            background-color: #334155;
+        }
+
+        .btn-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .btn-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .btn-small { font-size: 0.7rem; opacity: 0.8; }
+        .btn-big { font-weight: bold; font-size: 1rem; }
+
+        /* Features */
+        .features {
+            padding: 80px 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 12px;
+            background: var(--light);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 60px 5%;
+            background: #f1f5f9;
+            text-align: center;
+        }
+        
+        .team-names {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: #fff1f2;
+            color: #9f1239;
+            padding: 20px 5%;
+            font-size: 0.85rem;
+            text-align: center;
+            border-top: 1px solid #fecdd3;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        footer a:hover { text-decoration: underline; }
+
+        /* Mobile tweaks */
+        @media (max-width: 768px) {
+            .hero { padding: 40px 5%; text-align: center; }
+            .hero-text { padding-right: 0; margin-bottom: 40px; }
+            .hero h1 { font-size: 2.2rem; }
+            .store-buttons { justify-content: center; }
+            .nav-links { display: none; } /* Simplificado para móvil */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Metro App</a>
+        <nav class="nav-links">
+            <a href="./form.html">Soporte</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>No pierdas el tren.<br>Nunca más.</h1>
+            <p>La aplicación no oficial del Metro más rápida y fiable. Horarios en tiempo real, mapas offline y avisos de incidencias en tu bolsillo.</p>
+            
+            <div class="store-buttons" id="download">
+                <a href="#" class="btn-store">
+                    <span class="btn-icon">🤖</span> <div class="btn-text">
+                        <span class="btn-small">DISPONIBLE EN</span>
+                        <span class="btn-big">Google Play</span>
+                    </div>
+                </a>
+                
+                <a href="#" class="btn-store">
+                    <span class="btn-icon">🍎</span> <div class="btn-text">
+                        <span class="btn-small">CONSIGUIELO EN EL</span>
+                        <span class="btn-big">App Store</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>¿Por qué usar nuestra App?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="icon">⏱️</span>
+                <h3>Tiempos Reales</h3>
+                <p>Calculamos con precisión cuándo llegará el próximo tren a tu estación.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🗺️</span>
+                <h3>Mapa Offline</h3>
+                <p>Consulta el plano de la red y las paradas incluso sin conexión a internet.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">🔔</span>
+                <h3>Notificaciones</h3>
+                <p>Recibe avisos sobre cortes de servicio o retrasos antes de salir de casa.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <h3>Desarrollado con ❤️ por Metro Granada Team</h3>
+        <div class="team-names">
+            <span>JJosé de los Ríos</span>
+            <span>•</span>
+            <span>Marcos Baena Solar</span>
+            <span>•</span>
+            <span>Adolfo Martínez Olmedo</span>
+            <span>•</span>
+            <span>Pablo Delgado Galera</span>
+        </div>
+    </section>
+
+    <div class="disclaimer">
+        <strong>Aviso Legal:</strong> Esta aplicación es una herramienta independiente desarrollada por terceros. 
+        No está afiliada, asociada ni conectada oficialmente con el Consorcio de Transportes ni ninguna entidad gubernamental.
+    </div>
+
+    <footer>
+        <div style="margin-bottom: 20px;">
+            <a href="./privacidad.html/">Política de Privacidad</a>
+            <a href="./form.html">Contacto y Soporte</a>
+        </div>
+        <div>
+            &copy; <span id="year">2026</span> Metro Granada Team. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Actualizar año automáticamente
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
