@@ -247,11 +247,26 @@
             transform: translateY(-2px);
         }
 
-        .btn-store-icon { font-size: 1.25rem; }
+        .btn-badge {
+            display: inline-block;
+            transition: transform 0.25s, opacity 0.25s;
+            border-radius: 8px;
+            overflow: hidden;
+            line-height: 0;
+        }
 
-        .btn-store-text { display: flex; flex-direction: column; line-height: 1.15; }
-        .btn-store-text small { font-size: 0.62rem; opacity: 0.65; letter-spacing: 0.1em; text-transform: uppercase; }
-        .btn-store-text span { font-weight: 700; font-size: 0.9rem; }
+        .btn-badge:hover {
+            transform: translateY(-2px);
+            opacity: 0.88;
+        }
+
+        .btn-badge img {
+            height: 54px;
+            width: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.1);
+        }
 
         /* ─── PHONE MOCKUP ───────────────────────── */
         .hero-visual {
@@ -860,19 +875,11 @@
         </p>
 
         <div class="store-btns" id="download">
-            <a href="#" class="btn-store btn-amber">
-                <span class="btn-store-icon">🤖</span>
-                <div class="btn-store-text">
-                    <small>Disponible en</small>
-                    <span>Google Play</span>
-                </div>
+            <a href="#" class="btn-badge">
+                <img src="images/GetItOnGooglePlay_Badge_Web_color_Spanish.svg" alt="Disponible en Google Play">
             </a>
-            <a href="#" class="btn-store btn-ghost">
-                <span class="btn-store-icon">🍎</span>
-                <div class="btn-store-text">
-                    <small>Consíguelo en</small>
-                    <span>App Store</span>
-                </div>
+            <a href="#" class="btn-badge">
+                <img src="images/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg" alt="Descárgalo en el App Store">
             </a>
         </div>
     </div>
@@ -981,8 +988,8 @@
 
             <div class="feature-item">
                 <span class="feature-code">// ESTACIÓN 01</span>
-                <h3 class="feature-name">TIEMPOS EN<br>TIEMPO REAL</h3>
-                <p class="feature-desc">Calculamos con precisión cuándo llegará el próximo tren a tu estación. Sin estimaciones vagas, sin sorpresas. Solo datos exactos, actualizados al segundo.</p>
+                <h3 class="feature-name">PRÓXIMAS<br>SALIDAS</h3>
+                <p class="feature-desc">Consulta cuándo pasa el siguiente tren antes de salir de casa. Los horarios se obtienen directamente de la fuente y se muestran sin rodeos ni tiempos de carga.</p>
             </div>
 
             <div class="feature-item">
@@ -993,8 +1000,8 @@
 
             <div class="feature-item">
                 <span class="feature-code">// ESTACIÓN 03</span>
-                <h3 class="feature-name">ALERTAS<br>INTELIGENTES</h3>
-                <p class="feature-desc">Recibe notificaciones personalizadas sobre incidencias, retrasos y cortes antes de salir de casa. Tú eliges qué líneas y estaciones te interesan.</p>
+                <h3 class="feature-name">AVISOS DE<br>INCIDENCIAS</h3>
+                <p class="feature-desc">Entérate de cortes, retrasos y cambios de servicio antes de salir de casa. Tú decides qué estaciones te interesan y recibes solo lo que necesitas.</p>
             </div>
 
         </div>
@@ -1009,19 +1016,11 @@
         <h2 class="cta-title">EL METRO EN<br>TU <em>BOLSILLO</em></h2>
         <p class="cta-sub">Sin publicidad intrusiva. Sin coste. Desarrollada con cariño por y para los usuarios del Metro de Granada.</p>
         <div class="cta-btns">
-            <a href="#" class="btn-store btn-amber">
-                <span class="btn-store-icon">🤖</span>
-                <div class="btn-store-text">
-                    <small>Disponible en</small>
-                    <span>Google Play</span>
-                </div>
+            <a href="#" class="btn-badge">
+                <img src="images/GetItOnGooglePlay_Badge_Web_color_Spanish.svg" alt="Disponible en Google Play">
             </a>
-            <a href="#" class="btn-store btn-ghost">
-                <span class="btn-store-icon">🍎</span>
-                <div class="btn-store-text">
-                    <small>Consíguelo en</small>
-                    <span>App Store</span>
-                </div>
+            <a href="#" class="btn-badge">
+                <img src="images/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg" alt="Descárgalo en el App Store">
             </a>
         </div>
     </div>
