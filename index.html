@@ -1,18 +1,571 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Granada Metro Visualizer App</title>
+    <title>Granada Metro App — Inicio</title>
+    <meta name="description" content="Metro de Granada — Horarios, mapas offline y alertas en tiempo real. La app no oficial más rápida.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ─── RESET ─────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ─── TOKENS ─────────────────────────────── */
+        :root {
+            --bg:         #05050C;
+            --surface:    #0C0C1A;
+            --surface-2:  #131328;
+            --border:     rgba(255,255,255,0.07);
+            --amber:      #FFC107;
+            --red:        #FF4545;
+            --teal:       #00D4B2;
+            --text:       #EDEDF2;
+            --muted:      #6868A0;
+            --ff-display: 'Bebas Neue', sans-serif;
+            --ff-body:    'Sora', sans-serif;
+            --ff-mono:    'Space Mono', monospace;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: var(--ff-body);
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Grain texture */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ─── LAYOUT ─────────────────────────────── */
+        .concourse {
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background radial */
+        .concourse::before {
+            content: '';
+            position: fixed;
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(255,193,7,0.05) 0%, transparent 65%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        /* Diagonal stripe overlay */
+        .concourse::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: repeating-linear-gradient(
+                -60deg,
+                transparent,
+                transparent 40px,
+                rgba(255,255,255,0.008) 40px,
+                rgba(255,255,255,0.008) 41px
+            );
+            pointer-events: none;
+        }
+
+        /* ─── TOP BAR ─────────────────────────────── */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 6%;
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 0.6s both;
+        }
+
+        .topbar-line-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--ff-mono);
+            font-size: 0.65rem;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .line-badge {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: pulse 2.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .topbar-clock {
+            font-family: var(--ff-mono);
+            font-size: 0.85rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .topbar-clock span { color: var(--amber); }
+
+        /* ─── MAIN STAGE ─────────────────────────── */
+        .stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 6%;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        /* Station signage */
+        .station-sign {
+            margin-bottom: 60px;
+            animation: fadeUp 0.8s both 0.15s;
+        }
+
+        .station-city {
+            font-family: var(--ff-mono);
+            font-size: 0.68rem;
+            color: var(--muted);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .station-heading {
+            font-family: var(--ff-display);
+            font-size: clamp(4rem, 12vw, 9.5rem);
+            line-height: 0.88;
+            letter-spacing: 0.06em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .station-heading .word-metro {
+            display: block;
+            color: var(--text);
+        }
+
+        .station-heading .word-granada {
+            display: block;
+            color: var(--amber);
+            text-shadow: 0 0 60px rgba(255,193,7,0.2);
+        }
+
+        .station-tagline {
+            font-size: 1rem;
+            color: var(--muted);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            margin-top: 18px;
+        }
+
+        /* ─── METRO MAP NAVIGATION ───────────────── */
+        .metro-map {
+            width: 100%;
+            max-width: 900px;
+            animation: fadeUp 0.8s both 0.35s;
+        }
+
+        .map-label {
+            font-family: var(--ff-mono);
+            font-size: 0.62rem;
+            color: var(--muted);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            display: block;
+        }
+
+        /* The route rail */
+        .route {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            gap: 0;
+            margin-bottom: 0;
+        }
+
+        .route-seg {
+            flex: 1;
+            height: 3px;
+            background: rgba(255,255,255,0.08);
+            position: relative;
+            overflow: hidden;
+            max-width: 160px;
+        }
+
+        .route-seg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            width: 50%;
+            background: linear-gradient(90deg, transparent, var(--amber), transparent);
+            animation: trainSweep 4s ease-in-out infinite;
+        }
+
+        .route-seg:nth-child(4)::after  { animation-delay: 1.2s; }
+
+        @keyframes trainSweep {
+            0%   { left: -50%; opacity: 0; }
+            15%  { opacity: 1; }
+            85%  { opacity: 1; }
+            100% { left: 150%; opacity: 0; }
+        }
+
+        /* Station node */
+        .station-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .node-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .node-dot::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: transparent;
+            transition: background 0.3s;
+        }
+
+        /* Colors per station */
+        .station-node:nth-child(1) .node-dot { border-color: var(--amber); }
+        .station-node:nth-child(3) .node-dot { border-color: var(--red);   }
+        .station-node:nth-child(5) .node-dot { border-color: var(--teal);  }
+
+        .station-node:nth-child(1):hover .node-dot {
+            background: var(--amber);
+            box-shadow: 0 0 20px rgba(255,193,7,0.45);
+            transform: scale(1.18);
+        }
+
+        .station-node:nth-child(3):hover .node-dot {
+            background: var(--red);
+            box-shadow: 0 0 20px rgba(255,69,69,0.45);
+            transform: scale(1.18);
+        }
+
+        .station-node:nth-child(5):hover .node-dot {
+            background: var(--teal);
+            box-shadow: 0 0 20px rgba(0,212,178,0.45);
+            transform: scale(1.18);
+        }
+
+        /* Station labels below */
+        .station-labels {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 0;
+        }
+
+        .station-label-item {
+            flex: 1;
+            max-width: 200px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .stn-link {
+            text-decoration: none;
+            display: block;
+            padding: 20px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stn-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Accent per card */
+        .station-label-item:nth-child(1) .stn-link::before {
+            background: linear-gradient(135deg, rgba(255,193,7,0.08) 0%, transparent 60%);
+        }
+
+        .station-label-item:nth-child(2) .stn-link::before {
+            background: linear-gradient(135deg, rgba(255,69,69,0.08) 0%, transparent 60%);
+        }
+
+        .station-label-item:nth-child(3) .stn-link::before {
+            background: linear-gradient(135deg, rgba(0,212,178,0.08) 0%, transparent 60%);
+        }
+
+        .stn-link:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.14); }
+        .stn-link:hover::before { opacity: 1; }
+
+        .stn-line-tag {
+            font-family: var(--ff-mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+            position: relative;
+        }
+
+        .station-label-item:nth-child(1) .stn-line-tag { color: var(--amber); }
+        .station-label-item:nth-child(2) .stn-line-tag { color: var(--red);   }
+        .station-label-item:nth-child(3) .stn-line-tag { color: var(--teal);  }
+
+        .stn-name {
+            font-family: var(--ff-display);
+            font-size: 1.35rem;
+            letter-spacing: 0.08em;
+            color: var(--text);
+            display: block;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .stn-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.55;
+            font-weight: 300;
+            position: relative;
+        }
+
+        .stn-arrow {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 0.72rem;
+            color: var(--muted);
+            transition: color 0.2s, transform 0.2s;
+            position: relative;
+        }
+
+        .station-label-item:nth-child(1) .stn-link:hover .stn-arrow { color: var(--amber); transform: translateX(4px); }
+        .station-label-item:nth-child(2) .stn-link:hover .stn-arrow { color: var(--red);   transform: translateX(4px); }
+        .station-label-item:nth-child(3) .stn-link:hover .stn-arrow { color: var(--teal);  transform: translateX(4px); }
+
+        /* ─── BOTTOM BAR ─────────────────────────── */
+        .bottombar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 6%;
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid var(--border);
+            animation: fadeIn 0.8s both 0.6s;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .bottombar-copy {
+            font-family: var(--ff-mono);
+            font-size: 0.65rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+        }
+
+        .bottombar-status {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-family: var(--ff-mono);
+            font-size: 0.65rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        /* ─── KEYFRAMES ──────────────────────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────── */
+        @media (max-width: 700px) {
+            .station-heading { font-size: clamp(3rem, 16vw, 5.5rem); }
+
+            .route { display: none; } /* Hide the rail on mobile */
+
+            .station-labels {
+                flex-direction: column;
+                align-items: center;
+                gap: 14px;
+            }
+
+            .station-label-item { max-width: 100%; width: 100%; padding: 0; }
+
+            .bottombar { flex-direction: column; align-items: flex-start; gap: 8px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Granada Metro App</h1>
-    <nav>
-        <ul>
-            <li><a href="privacidad.html">Politica de Privacidad</a></li>
-            <li><a href="form.html">Formulario de Contacto</a></li>
-            <li><a href="marketing.html">Marketing</a></li> 
-        </ul>
-    </nav>
+
+<div class="concourse">
+
+    <!-- ══════════════════ TOP BAR ══════════════════ -->
+    <div class="topbar">
+        <div class="topbar-line-indicator">
+            <div class="line-badge"></div>
+            <span>Línea 1 &nbsp;·&nbsp; En servicio</span>
+        </div>
+        <div class="topbar-clock">
+            <span id="clock">--:--</span>
+        </div>
+    </div>
+
+    <!-- ══════════════════ MAIN STAGE ══════════════ -->
+    <main class="stage">
+
+        <!-- Signage -->
+        <div class="station-sign">
+            <span class="station-city">Granada &nbsp;·&nbsp; Andalucía &nbsp;·&nbsp; España</span>
+            <h1 class="station-heading">
+                <span class="word-metro">METRO</span>
+                <span class="word-granada">GRANADA</span>
+            </h1>
+            <p class="station-tagline">La app no oficial más rápida del Metro de Granada.</p>
+        </div>
+
+        <!-- Metro map navigation -->
+        <nav class="metro-map" aria-label="Navegación principal">
+            <span class="map-label">// Selecciona tu destino</span>
+
+            <!-- The visual rail -->
+            <div class="route" aria-hidden="true">
+                <div class="station-node">
+                    <div class="node-dot"></div>
+                </div>
+                <div class="route-seg"></div>
+                <div class="station-node">
+                    <div class="node-dot"></div>
+                </div>
+                <div class="route-seg"></div>
+                <div class="station-node">
+                    <div class="node-dot"></div>
+                </div>
+            </div>
+
+            <!-- The clickable labels -->
+            <div class="station-labels">
+
+                <div class="station-label-item">
+                    <a href="./marketing.html" class="stn-link">
+                        <span class="stn-line-tag">// La App</span>
+                        <span class="stn-name">METRO APP</span>
+                        <span class="stn-desc">Descúbrela, descárgala y empieza a moverte por Granada.</span>
+                        <span class="stn-arrow">Ir →</span>
+                    </a>
+                </div>
+
+                <div class="station-label-item">
+                    <a href="./privacidad.html" class="stn-link">
+                        <span class="stn-line-tag">// Legal</span>
+                        <span class="stn-name">PRIVACIDAD</span>
+                        <span class="stn-desc">Política de privacidad y tratamiento de datos personales.</span>
+                        <span class="stn-arrow">Ir →</span>
+                    </a>
+                </div>
+
+                <div class="station-label-item">
+                    <a href="./form.html" class="stn-link">
+                        <span class="stn-line-tag">// Contacto</span>
+                        <span class="stn-name">SOPORTE</span>
+                        <span class="stn-desc">¿Tienes dudas o sugerencias? Escríbenos, te respondemos.</span>
+                        <span class="stn-arrow">Ir →</span>
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+
+    </main>
+
+    <!-- ══════════════════ BOTTOM BAR ══════════════ -->
+    <div class="bottombar">
+        <span class="bottombar-copy">
+            &copy; <span id="year"></span> Metro Granada Team &nbsp;·&nbsp; Todos los derechos reservados
+        </span>
+        <div class="bottombar-status">
+            <div class="status-dot"></div>
+            <span>Servicio operativo</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Live clock
+    function tick() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        document.getElementById('clock').textContent = h + ':' + m;
+    }
+    tick();
+    setInterval(tick, 10000);
+</script>
+
 </body>
 </html>
