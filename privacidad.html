@@ -202,6 +202,7 @@
         <h2>5. Conservación de los datos</h2>
         <ul>
             <li><strong>Registro de notificaciones:</strong> se conserva mientras las notificaciones estén activas. Se elimina definitivamente <strong>30 días después</strong> de que se desactive (porque usted retire el permiso o porque su token deje de ser válido, por ejemplo al desinstalar la Aplicación) y, en cualquier caso, tras <strong>12 meses</strong> sin abrir la Aplicación.</li>
+            <li><strong>Comprobación de entrega de notificaciones:</strong> tras cada envío conservamos el identificador del envío junto a un resumen cifrado (hash) del token, nunca el token en sí, hasta confirmar la entrega y, como máximo, 24 horas.</li>
             <li><strong>Registros técnicos del servidor:</strong> máximo 30 días.</li>
             <li><strong>Mensajes del formulario de contacto:</strong> el tiempo necesario para responder y, como máximo, un año.</li>
             <li><strong>Ubicación, lecturas NFC y preferencias:</strong> no se almacenan en nuestros servidores.</li>
