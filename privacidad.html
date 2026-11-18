@@ -123,67 +123,103 @@
         <button class="print-btn" onclick="window.print()">Imprimir / Guardar como PDF</button>
 
         <h1>Política de Privacidad</h1>
-        
+
         <div class="meta-info">
-            Última actualización: <span id="current-date">Cargando fecha...</span>
+            Última actualización: 18 de noviembre de 2026
         </div>
 
         <p>
             La presente Política de Privacidad describe cómo los desarrolladores de la aplicación móvil
-            recopilan, utilizan y comparten la información del usuario ("usted") 
-            en relación con el uso de nuestra aplicación móvil Granada Metro Visualizer (la "Aplicación").
+            Granada Metro Visualizer (la "Aplicación") recopilan, utilizan y comparten la información
+            de las personas usuarias ("usted"), así como la del sitio web granadametroapp.github.io (el "Sitio web").
         </p>
-        
-        <p>Nos comprometemos a proteger su privacidad. Esta aplicación ha sido diseñada respetando los principios de minimización de datos: solo accedemos a la información estrictamente necesaria para que la aplicación funcione.</p>
+
+        <p>La Aplicación no requiere registro ni cuenta de usuario, no contiene publicidad y no incluye herramientas de analítica o seguimiento. Ha sido diseñada respetando el principio de minimización de datos: solo tratamos la información estrictamente necesaria para que funcione.</p>
 
         <h2>1. Responsable del Tratamiento</h2>
-        <p>A efectos de la legislación de protección de datos (RGPD) y otras normativas aplicables, el responsable del tratamiento de los datos es:</p>
+        <p>A efectos del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018 (LOPDGDD), el responsable del tratamiento de los datos es:</p>
         <ul>
             <li><strong>Titulares:</strong> El equipo de Granada Metro Visualizer: José de los Ríos Piñero, Pablo Delgado Galera, Adolfo Martínez Olmedo y Marcos Baena Solar</li>
             <li><strong>Contacto:</strong> granadametroapp@gmail.com</li>
             <li><strong>Ubicación:</strong> Granada, España</li>
         </ul>
 
-        <h2>2. Información que recopilamos y permisos</h2>
-        <p>Para el correcto funcionamiento de la Aplicación, solicitamos los siguientes permisos y acceso a datos del dispositivo:</p>
+        <h2>2. Información que tratamos</h2>
 
         <h3>A. Ubicación (Geolocalización)</h3>
         <p>La Aplicación solicita acceso a su ubicación precisa o aproximada (GPS y red).</p>
         <ul>
-            <li><strong>Finalidad:</strong> Utilizamos esta información exclusivamente para mostrarle su posición en el mapa en tiempo real, calcular distancias a las paradas de metro más cercanas y trazar rutas.</li>
-            <li><strong>Tratamiento:</strong> La ubicación se procesa localmente en su dispositivo. <strong>No almacenamos su historial de ubicaciones</strong> en servidores externos ni lo compartimos con terceros.</li>
+            <li><strong>Finalidad:</strong> mostrar su posición en el mapa y calcular la estación de metro más cercana.</li>
+            <li><strong>Tratamiento:</strong> la ubicación se procesa únicamente en su dispositivo. <strong>Nunca se envía a nuestros servidores</strong> ni almacenamos su historial de ubicaciones.</li>
+            <li><strong>Base jurídica:</strong> su consentimiento, otorgado mediante el permiso del sistema operativo, que puede retirar en cualquier momento.</li>
         </ul>
 
         <h3>B. Notificaciones Push</h3>
-        <p>La Aplicación puede solicitar permiso para enviarle notificaciones.</p>
+        <p>Tras varios usos de la Aplicación, se le pedirá permiso para enviarle notificaciones sobre incidencias en el servicio de metro (retrasos, cortes o cierres) y otros avisos importantes. Si concede el permiso, la Aplicación envía a nuestro servidor de notificaciones los siguientes datos:</p>
         <ul>
-            <li><strong>Finalidad:</strong> Informarle sobre incidencias en el servicio, actualizaciones de la app o avisos importantes.</li>
-            <li><strong>Gestión:</strong> Puede desactivar estas notificaciones en cualquier momento desde los ajustes de su dispositivo.</li>
+            <li>Un <strong>identificador de instalación</strong> aleatorio generado por la Aplicación (no está vinculado a su identidad ni a su cuenta de Apple o Google).</li>
+            <li>El <strong>token de notificaciones</strong> de su dispositivo, necesario para hacerle llegar los avisos.</li>
+            <li>La plataforma (Android o iOS), la versión de la Aplicación, el idioma elegido en la Aplicación y la configuración regional del dispositivo (para enviarle los avisos en su idioma).</li>
+            <li>Las fechas de alta, de última actualización y de último uso del registro.</li>
+        </ul>
+        <ul>
+            <li><strong>Finalidad:</strong> enviarle avisos sobre el servicio de metro.</li>
+            <li><strong>Base jurídica:</strong> su consentimiento (art. 6.1.a RGPD).</li>
+            <li><strong>Retirada:</strong> puede desactivar las notificaciones en cualquier momento con el interruptor «Avisos del servicio» en los Ajustes de la Aplicación (su registro se desactiva al momento) o desde los ajustes de su dispositivo (su registro se desactiva la próxima vez que abra la Aplicación).</li>
         </ul>
 
-        <h3>C. Datos Técnicos (Logs)</h3>
-        <p>De forma automática, la plataforma de distribución (Google Play Store o Apple App Store) puede recopilar estadísticas anónimas sobre fallos (crashes), modelo de dispositivo y versión del sistema operativo. Estos datos no le identifican personalmente y se usan solo para mejorar la estabilidad técnica de la app.</p>
+        <h3>C. Lectura de tarjetas de transporte (NFC)</h3>
+        <p>En dispositivos compatibles, la Aplicación puede leer mediante NFC el saldo de su tarjeta de transporte del Consorcio cuando usted la acerca al teléfono.</p>
+        <ul>
+            <li><strong>Tratamiento:</strong> la lectura se realiza únicamente en su dispositivo para mostrarle el saldo. <strong>Los datos de la tarjeta no se guardan ni se envían a ningún servidor.</strong></li>
+        </ul>
 
-        <h2>3. Uso de la Información</h2>
-        <p>No recopilamos nombres, correos electrónicos ni números de teléfono. La información técnica y de sensores se utiliza únicamente para:</p>
-        <ol>
-            <li>Proporcionar la funcionalidad principal (ver horarios y mapas).</li>
-            <li>Mejorar el rendimiento técnico de la Aplicación.</li>
-            <li>Cumplir con obligaciones legales.</li>
-        </ol>
+        <h3>D. Datos guardados en su dispositivo</h3>
+        <p>La Aplicación guarda localmente, sin enviarlos a nuestros servidores, sus estaciones favoritas, el idioma, el tema visual y otras preferencias, así como datos de funcionamiento (por ejemplo, el número de veces que ha abierto la Aplicación, para decidir cuándo solicitar el permiso de notificaciones). Se eliminan al borrar los datos o desinstalar la Aplicación.</p>
 
-        <h2>4. Compartir información con terceros</h2>
-        <p>Actualmente, <strong>la Aplicación no contiene publicidad</strong> y no vendemos ni cedemos sus datos a terceros con fines comerciales.</p>
-        <p>La Aplicación utiliza servicios de terceros estrictamente necesarios para la infraestructura técnica (por ejemplo, los mapas del sistema provistos por Google Maps SDK o Apple MapKit). Estos proveedores operan bajo sus propias políticas de privacidad.</p>
+        <h3>E. Tiempos de llegada y datos técnicos de conexión</h3>
+        <p>Para mostrar los tiempos de llegada en tiempo real, la Aplicación se conecta a nuestro servidor (api.granadametro.com). Esta conexión <strong>no incluye su ubicación ni ningún identificador personal</strong>. Como en cualquier conexión a Internet, el servidor recibe su dirección IP de forma técnica para poder responder; no la usamos para identificarle y, si se conserva en registros técnicos de seguridad, se elimina en un plazo máximo de 30 días.</p>
+        <p>Además, la Aplicación comprueba al iniciarse si existen actualizaciones a través del servicio de Expo, lo que implica enviar datos técnicos como la plataforma y la versión de la Aplicación.</p>
+        <p>La plataforma de distribución (Google Play o App Store) puede recopilar, según su configuración, estadísticas de fallos y de uso conforme a sus propias políticas.</p>
 
-        <h2>5. Retención de Datos</h2>
-        <p>Dado que no requerimos registro de usuario ni almacenamos datos personales en servidores propios, no retenemos su información personal. Los datos de ubicación son efímeros y desaparecen al cerrar la aplicación.</p>
+        <h3>F. Formulario de contacto del Sitio web</h3>
+        <p>Si nos escribe mediante el formulario de contacto, tratamos su correo electrónico, el asunto y el mensaje únicamente para responderle (base jurídica: su consentimiento). El formulario se gestiona a través del proveedor Formspark (submit-form.com). Conservamos estos mensajes durante el tiempo necesario para atender su consulta y, como máximo, un año.</p>
+
+        <h2>3. Destinatarios y encargados del tratamiento</h2>
+        <p><strong>No vendemos ni cedemos sus datos a terceros</strong> con fines comerciales. Para prestar el servicio utilizamos los siguientes proveedores, que tratan datos únicamente por cuenta nuestra o para su función técnica:</p>
+        <ul>
+            <li><strong>Contabo GmbH (Alemania):</strong> alojamiento de nuestros servidores (tiempos de llegada y notificaciones). Los datos se almacenan en la Unión Europea.</li>
+            <li><strong>Expo (650 Industries, Inc., EE. UU.):</strong> servicio de envío de notificaciones push y de actualizaciones de la Aplicación.</li>
+            <li><strong>Apple (Apple Push Notification service) y Google (Firebase Cloud Messaging):</strong> entrega de las notificaciones en su dispositivo.</li>
+            <li><strong>Mapas:</strong> Google Maps en Android y Apple Maps en iOS, para mostrar el mapa. Estos servicios reciben datos técnicos necesarios para cargarlo conforme a sus propias políticas de privacidad.</li>
+            <li><strong>Formspark:</strong> recepción de los mensajes del formulario de contacto.</li>
+            <li><strong>GitHub (EE. UU.):</strong> alojamiento del Sitio web, que puede registrar datos técnicos de acceso como la dirección IP. Algunas páginas del Sitio web cargan tipografías desde Google Fonts.</li>
+        </ul>
+
+        <h2>4. Transferencias internacionales</h2>
+        <p>Algunos de los proveedores anteriores (Expo, Apple, Google, GitHub) pueden tratar datos fuera del Espacio Económico Europeo, en particular en Estados Unidos. Estas transferencias se realizan con las garantías previstas en el RGPD, como el Marco de Privacidad de Datos UE-EE. UU. o las cláusulas contractuales tipo aprobadas por la Comisión Europea.</p>
+
+        <h2>5. Conservación de los datos</h2>
+        <ul>
+            <li><strong>Registro de notificaciones:</strong> se conserva mientras las notificaciones estén activas. Se elimina definitivamente <strong>30 días después</strong> de que se desactive (porque usted retire el permiso o porque su token deje de ser válido, por ejemplo al desinstalar la Aplicación) y, en cualquier caso, tras <strong>12 meses</strong> sin abrir la Aplicación.</li>
+            <li><strong>Registros técnicos del servidor:</strong> máximo 30 días.</li>
+            <li><strong>Mensajes del formulario de contacto:</strong> el tiempo necesario para responder y, como máximo, un año.</li>
+            <li><strong>Ubicación, lecturas NFC y preferencias:</strong> no se almacenan en nuestros servidores.</li>
+        </ul>
 
         <h2>6. Sus Derechos</h2>
-        <p>Usted tiene derecho a solicitar información sobre el tratamiento de sus datos, así como a revocar los permisos concedidos (como la ubicación) en cualquier momento desde los ajustes de su móvil. Si considera que sus derechos han sido vulnerados, puede presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD).</p>
+        <p>Puede ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, así como retirar su consentimiento en cualquier momento, escribiendo a granadametroapp@gmail.com. La retirada del consentimiento no afecta a la licitud del tratamiento previo.</p>
+        <p>La forma más sencilla de retirar su consentimiento y eliminar sus datos de notificaciones es desactivar el interruptor «Avisos del servicio» en los Ajustes de la Aplicación: su registro se desactivará y se eliminará en un plazo de 30 días. Para otras solicitudes, indíquenos el «ID del dispositivo» que aparece al final de la pantalla de Ajustes de la Aplicación, ya que no le pedimos ningún otro dato identificativo.</p>
+        <p>Si considera que sus derechos no han sido respetados, puede presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" style="color: var(--primary-color);">www.aepd.es</a>).</p>
 
-        <h2>7. Contacto</h2>
-        <p>Si tiene alguna pregunta sobre esta Política de Privacidad, puede contactarnos rellenando el formulario en:</p>
+        <h2>7. Menores</h2>
+        <p>La Aplicación no está dirigida específicamente a menores de 14 años y no recopilamos de forma consciente datos identificativos de menores.</p>
+
+        <h2>8. Cambios en esta Política</h2>
+        <p>Podemos actualizar esta Política para reflejar cambios en la Aplicación o en la normativa. Publicaremos la versión vigente en esta página indicando la fecha de la última actualización.</p>
+
+        <h2>9. Contacto</h2>
+        <p>Si tiene alguna pregunta sobre esta Política de Privacidad, puede escribirnos a granadametroapp@gmail.com o usar el formulario:</p>
         <p style="text-align: center; font-weight: bold; font-size: 1.1rem;">
             <a href="./form.html" style="color: var(--primary-color);">Formulario de Contacto</a>
         </p>
@@ -196,12 +232,7 @@
     <script>
         /* --- JAVASCRIPT BÁSICO --- */
         
-        // 1. Poner la fecha de hoy automáticamente en "Última actualización"
-        const dateElement = document.getElementById('current-date');
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        dateElement.textContent = new Date().toLocaleDateString('es-ES', options);
-
-        // 2. Poner el año actual en el Copyright del footer
+        // Poner el año actual en el Copyright del footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
     </script>
